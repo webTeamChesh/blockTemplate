@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url';
 import { makePages } from './helpers.js';
 import { appInner, appOuter} from './ejsTemplates.js';
 import  listTemplate from './listTemplate.js';
-
 import ejs from 'ejs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
