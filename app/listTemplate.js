@@ -114,9 +114,9 @@ const listTemplate = `
                       <div class="row align-items-center">
                         <div class="col-11 pt-1">{{obj.display}}</div>
                         <div class="col-1 p-0">
-                          <span class="entryUpIcon" :id="'up' + obj.id"
+                          <span class="hmoUpIcon" :id="'up' + obj.id"
                                 >&#9650;</span>
-                          <span class="entryDownIcon" :id="'down' + obj.id"
+                          <span class="hmoDownIcon" :id="'down' + obj.id"
                                 >&#9660;</span>
                         </div>
                       </div>
