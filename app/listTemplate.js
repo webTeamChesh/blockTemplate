@@ -2,7 +2,6 @@ const listTemplate = `
   <div id="contentTypesContainer">
   <h2>{{h2}}</h2>
   <div class="row events-container">
-    <div class="col-lg-8">
           <div class="row">
             <div class="span4">
               <h3 ref="tableTop" class="fs-4">
@@ -181,7 +180,6 @@ const listTemplate = `
       </nav>
     </div>
   </div>
-</div>
   `;
 
 export default listTemplate;
