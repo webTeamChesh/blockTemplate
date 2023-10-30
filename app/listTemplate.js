@@ -102,7 +102,6 @@ const listTemplate = `
       <div class="row">
         <div class="col-12">
           <div class="table-responsive">
-      <section v-for="(_, i) in pages" :key="i" v-show="i===pageIndex">
             <table class="table usr_TableDefault">
               <caption class="usr_CaptionHide">
                 Register of HMO Licences
@@ -124,17 +123,16 @@ const listTemplate = `
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="item in pages[i]">
-                  <td>{{item.licenceReference}}</td>
-                  <td>{{toTitleCase(item.buildingName)}}</td>
-                  <td>{{toTitleCase(item.area)}}</td>
-                  <td>{{item.postcode}}</td>
-                  <td>{{item.expDate}}</td>
-                </tr>
+                <tbody v-for="(_, i) in pages" :key="i" v-show="i===pageIndex">
+                  <tr v-for="item in pages[i]">
+                    <td>{{item.licenceReference}}</td>
+                    <td>{{toTitleCase(item.buildingName)}}</td>
+                    <td>{{toTitleCase(item.area)}}</td>
+                    <td>{{item.postcode}}</td>
+                    <td>{{item.expDate}}</td>
+                  </tr>
               </tbody>
             </table>
-  </section>
           </div>
         </div>
       </div>

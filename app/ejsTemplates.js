@@ -158,7 +158,6 @@ return createSSRApp({
           goToPage: function (i) {
             document.getElementById('contentTypesContainer').scrollIntoView();
             this.pageIndex = i;
-            console.log(this.pageIndex);
             this.lastSearch = this.searchTerm;
           },
           clearAlert: function () {
@@ -205,6 +204,7 @@ return createSSRApp({
           let inputBox = document.getElementById('contentTypeSearchInput');
           let searchBtn = document.getElementById('contentTypeSearchBtn');
           this.searchedItems = this.copyItems.slice();
+          this.calculatePages();
         },
           template: \`<%- template %>\`,
         })
