@@ -32,7 +32,7 @@ jobs:
     - name: Contensis block push action
       uses: contensis/block-push@v1
       with:
-        block-id: testing
+        block-id: hmo-licences
         alias: chesheast
         project-id: website
         image-uri: cewebteam/hmo-licences:${{ github.run_number }}
