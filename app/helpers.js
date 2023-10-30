@@ -1,6 +1,5 @@
 'use strict';
 
-
 const stripP = (str) => {
   return str ? str.replace(/(&nbsp;)?<\/?p[^>]*>/g, '') : '';
 };
@@ -13,4 +12,18 @@ const makePages = (arr, pageSize) => {
   return { btns, pages };
 };
 
-export { makePages};
+const formatDate = (d) => {
+  return d.toLocaleDateString('en-GB');
+};
+
+const addDates = (obj) => {
+  obj.expiryDate = new Date(obj.expiryDate);
+  obj.expDate = formatDate(obj.expiryDate);
+  return obj;
+};
+
+const addIndex = (arr) => {
+  arr.forEach((e, i) => (e.index = i));
+};
+
+export { addIndex, makePages, addDates, formatDate };

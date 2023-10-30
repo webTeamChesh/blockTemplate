@@ -4,6 +4,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import getEntries from './getEntries.js';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dir = path.join(__dirname, '../public');
 const server = express();
@@ -11,7 +12,7 @@ const port = 3001;
 
 server.listen(port, (error) => {
   if (!error) {
-    console.log(`\nExpress running on port ${port}.`);
+    console.log(`\nServer running on port ${port}.`);
   } else {
     console.log(error);
   }

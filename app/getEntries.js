@@ -5,17 +5,17 @@ import { renderToString } from 'vue/server-renderer';
 import fetch from 'node-fetch';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { makePages } from './helpers.js';
-import { appInner, appOuter} from './ejsTemplates.js';
-import  listTemplate from './listTemplate.js';
+import { makePages, addDates, addIndex } from './helpers.js';
+import { appInner, appOuter } from './ejsTemplates.js';
+import listTemplate from './listTemplate.js';
+
 import ejs from 'ejs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dir = path.join(__dirname, '../public');
 const ROOT_URL = `https://cms-chesheast.cloud.contensis.com/`;
 const PROJECT = 'website';
-const pageSize = 10;
-const breadcrumb = "<li class='breadcrumb-item'>HMOs</li>";
+const pageSize = 20;
 
 async function getEntries(req, res) {
   const queries = req.url.split(/\?|&/);
@@ -41,10 +41,13 @@ async function getEntries(req, res) {
   }
 
   let item = await resp.json();
+  console.log(item);
 
   const title = item.entryTitle || '';
   const description = item.entryDescription || '';
   const contentType = item.contentTypeAPIName || '';
+  const h1 = item.h1 || '';
+  const introductoryText = item.introductoryText || '';
 
   const response = await fetch(
     `${ROOT_URL}/api/delivery/projects/${PROJECT}/contenttypes/${contentType}/entries?accessToken=QCpZfwnsgnQsyHHB3ID5isS43cZnthj6YoSPtemxFGtcH15I&pageSize=1000`,
@@ -57,8 +60,8 @@ async function getEntries(req, res) {
   }
   // Get the data
   const data = await response.json();
-  const items = data.items;
-  console.log(`Got ${items.length} items`);
+  let items = data.items.map((e) => addDates(e));
+  addIndex(items);
   const { btns, pages } = makePages([...items], pageSize);
 
   // Create the app body by injecting the template.
@@ -85,7 +88,14 @@ async function getEntries(req, res) {
 
   // Render and send to client.
   renderToString(app).then((html) => {
-    res.render('index', { breadcrumb, description, title, html, head_end });
+    res.render('index', {
+      description,
+      title,
+      h1,
+      introductoryText,
+      html,
+      head_end,
+    });
   });
 }
 
