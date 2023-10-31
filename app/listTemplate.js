@@ -7,8 +7,8 @@ const listTemplate = `
               <h3 ref="tableTop" class="fs-4">
                 Search for a registered HMO
               </h3>
-              <div class="search-options">
-                <div  class="input-group mb-3 content-type-search border border-dark">
+              <div class="row g-0">
+                <div class="col-10 mb-3 content-type-search">
                   <input
                         @input="searchContentType"
                         @focus="clearAlert"
@@ -22,15 +22,8 @@ const listTemplate = `
                       />
                   <label for="contentTypeSearchInput" class="hidden"
                         >Search term</label>
-                  <div class="input-group-append">
-                    <button
-                          type="button"
-                          class="btn btn-outline-secondary"
-                          v-on:click="callSearch"
-                          id="contentTypeSearchBtn"
-                        >
-                          Search
-                        </button>
+                </div>
+                <div class="col">
                     <button
                           v-if="searchTerm.length > 0"
                           class="btn btn-outline-secondary"
@@ -39,11 +32,6 @@ const listTemplate = `
                         >
                           Clear Search
                         </button>
-                  </div>
-                </div>
-                <div  class="search-error-messages">
-                  <div v-if="searchAlert" class="alert alert-secondary mt-2" role="alert">
-                    Please enter a search term.
                   </div>
                 </div>
               </div>

@@ -202,7 +202,6 @@ return createSSRApp({
             this.setUpHeaders(e);
           });
           let inputBox = document.getElementById('contentTypeSearchInput');
-          let searchBtn = document.getElementById('contentTypeSearchBtn');
           this.searchedItems = this.copyItems.slice();
           this.calculatePages();
         },
