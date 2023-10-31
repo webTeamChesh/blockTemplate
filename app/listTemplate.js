@@ -165,7 +165,6 @@ const listTemplate = `
         </ul>
       </nav>
     </div>
-  </div>
   `;
 
 export default listTemplate;
