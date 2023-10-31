@@ -7,7 +7,7 @@ const listTemplate = `
               <h3 ref="tableTop" class="fs-4">
                 Search for a registered HMO
               </h3>
-              <div class="row g-0">
+              <div class="row gx-1">
                 <div class="col-10 mb-3 content-type-search">
                   <input
                         @input="searchContentType"

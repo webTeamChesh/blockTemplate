@@ -41,7 +41,6 @@ async function getEntries(req, res) {
   }
 
   let item = await resp.json();
-  console.log(item);
 
   const title = item.entryTitle || '';
   const description = item.entryDescription || '';
