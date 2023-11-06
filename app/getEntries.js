@@ -8,6 +8,14 @@ import { fileURLToPath } from 'url';
 import { makePages, addDates, addIndex } from './helpers.js';
 import { appInner, appOuter } from './ejsTemplates.js';
 import listTemplate from './listTemplate.js';
+import {
+  includes,
+  reachdeck,
+  header,
+  footer,
+  cookies,
+  site_search,
+} from 'cec-block-templates';
 
 import ejs from 'ejs';
 
@@ -88,6 +96,12 @@ async function getEntries(req, res) {
   // Render and send to client.
   renderToString(app).then((html) => {
     res.render('index', {
+      includes,
+      cookies,
+      header,
+      footer,
+      site_search,
+      reachdeck,
       description,
       title,
       h1,
