@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { makePages, addDates, addIndex } from './helpers.js';
-import { appInner, appOuter } from './ejsTemplates.js';
+import { breadcrumb, appInner, appOuter } from './ejsTemplates.js';
 import listTemplate from './listTemplate.js';
 import {
   includes,
@@ -48,12 +48,22 @@ async function getEntries(req, res) {
   }
 
   let item = await resp.json();
-
   const title = item.entryTitle || '';
   const description = item.entryDescription || '';
   const contentType = item.contentTypeAPIName || '';
   const h1 = item.h1 || '';
   const introductoryText = item.introductoryText || '';
+  let item_path = item.sys.uri.slice(1);
+  let hrefs = item_path.split('/').map(e => e = `/${e}`);
+  let links = item_path.replace(/[-_]/g, " ").split('/');
+  links = links.map(e => e = `${e[0].toUpperCase()}${e.slice(1).toLowerCase()}`);
+  links = links.map(e => e = e.replace(/hmo/i, 'HMO'));
+  let bc_inner = links.reduce((acc, l, i) => {
+      acc =  i === links.length - 1 ? `${acc}<li class="breadcumb-item">${l}</li>` : `${acc}<li class="breadcrumb-item"><a href="${hrefs[i]}">${l}</a></li>`;
+    return acc;
+  }, '');
+  console.log(bc_inner);
+  let bc = ejs.render(breadcrumb, {bc_inner});
 
   const response = await fetch(
     `${ROOT_URL}/api/delivery/projects/${PROJECT}/contenttypes/${contentType}/entries?accessToken=QCpZfwnsgnQsyHHB3ID5isS43cZnthj6YoSPtemxFGtcH15I&pageSize=1000`,
@@ -95,6 +105,7 @@ async function getEntries(req, res) {
   // Render and send to client.
   renderToString(app).then((html) => {
     res.render('index', {
+      breadcrumb: bc,
       includes,
       cookies,
       header,
