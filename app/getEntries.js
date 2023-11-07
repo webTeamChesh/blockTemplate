@@ -16,7 +16,6 @@ import {
   cookies,
   site_search,
 } from 'cec-block-templates';
-
 import ejs from 'ejs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
