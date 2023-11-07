@@ -59,7 +59,7 @@ async function getEntries(req, res) {
   links = links.map(e => e = `${e[0].toUpperCase()}${e.slice(1).toLowerCase()}`);
   links = links.map(e => e = e.replace(/hmo/i, 'HMO'));
   let bc_inner = links.reduce((acc, l, i) => {
-      acc =  i === links.length - 1 ? `${acc}<li class="breadcumb-item">${l}</li>` : `${acc}<li class="breadcrumb-item"><a href="${hrefs[i]}">${l}</a></li>`;
+      acc =  i === links.length - 1 ? `${acc}<li class="breadcrumb-item">${l}</li>` : `${acc}<li class="breadcrumb-item"><a href="${hrefs[i]}">${l}</a></li>`;
     return acc;
   }, '');
   console.log(bc_inner);
