@@ -1,5 +1,12 @@
 'use strict';
 
+const dateOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+
 const stripP = (str) => {
   return str ? str.replace(/(&nbsp;)?<\/?p[^>]*>/g, '') : '';
 };
@@ -16,6 +23,11 @@ const formatDate = (d) => {
   return d.toLocaleDateString('en-GB');
 };
 
+const prettyDate = (d) => {
+  return d.toLocaleDateString('en-GB', dateOptions);
+};
+ 
+
 const addDates = (obj) => {
   obj.expiryDate = new Date(obj.expiryDate);
   obj.expDate = formatDate(obj.expiryDate);
@@ -26,4 +38,4 @@ const addIndex = (arr) => {
   arr.forEach((e, i) => (e.index = i));
 };
 
-export { addIndex, makePages, addDates, formatDate };
+export { addIndex, makePages, addDates, prettyDate };

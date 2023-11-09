@@ -1,13 +1,12 @@
-
 const breadcrumb = `
   <div class="cec-breadcrumb-bg">
       <div class="container">
         <div class="row">
           <div class="col">
             <nav class="no-print-url" aria-label="breadcrumb">
-              <ol class="breadcrumb cec-breadcrumb my-0 py-2">
-               <%- bc_inner %> 
               </ol>
+              <ol class="breadcrumb cec-breadcrumb my-0 py-2">
+               <%- bc_inner %>
             </nav>
           </div>
         </div>
