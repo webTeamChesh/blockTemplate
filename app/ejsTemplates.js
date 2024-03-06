@@ -5,8 +5,8 @@ const breadcrumb = `
           <div class="col">
             <nav class="no-print-url" aria-label="breadcrumb">
               <ol class="breadcrumb cec-breadcrumb my-0 py-2">
-               <%- bc_inner %>
-                </ol>
+                 <%- bc_inner %>
+              </ol>
             </nav>
           </div>
         </div>
