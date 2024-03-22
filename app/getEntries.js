@@ -69,11 +69,10 @@ async function getEntries(req, res) {
     acc =
       i === links.length - 1
         ? `${acc}<li class="breadcrumb-item">${l}</li>`
-        : `${acc}<li class="breadcrumb-item"><a href="${classic
-            .slice(0, i + 1)
-            .join('')}">${l}</a></li>`;
+        : `${acc}<li class="breadcrumb-item"><a href="${classic[i]}">${l}</a></li>`;
     return acc;
   }, '');
+
   let bc = ejs.render(breadcrumb, { bc_inner });
 
   const response = await fetch(
